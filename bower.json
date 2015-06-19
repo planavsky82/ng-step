@@ -1,0 +1,14 @@
+{
+  "name": "website",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular": "v1.3.16",
+    "angular-bootstrap": "v0.10.0",
+    "angular-ui-router": "v0.2.10",
+    "bootstrap": "v3.1.1",
+    "fontawesome": "v4.0.3",
+    "jquery": "~2.x",
+    "modernizr": "2.7.2"
+  },
+  "private": true
+}
