@@ -42,6 +42,11 @@ module.exports = function(grunt) {
                 }
             }
         },
+        karma: {
+            unit: {
+                configFile: 'karma.conf.js'
+            }
+        },
         jshint: {
             all: ['Gruntfile.js', 'app/**/*.js']
         }
@@ -57,8 +62,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-open');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-htmlhint');
+    grunt.loadNpmTasks('grunt-karma');
 
-    grunt.registerTask('default', ['build','connect','open','watch']);
+    grunt.registerTask('default', ['karma','build','connect','open','watch']);
     grunt.registerTask(
         'build',
         'Compiles all of the assets and copies the files to the build directory.',
