@@ -3,20 +3,20 @@ module.exports = function(grunt) {
         less: {
             development: {
                 files: {
-                    "build/app/framework/css/framework.css": "app/framework/less/framework.less",
-                    "build/app/framework/css/vendor.css": "app/framework/less/vendor.less"
+                    "directive/css/main.css": "directive/css/main.less",
+                    "directive/css/vendor.css": "directive/css/vendor.less"
                 }
             }
         },
         watch: {
-            files: ["app/**/less/**.less","app/**","index.html"],
+            files: ["directive/css/**.less","directive/**","demo/**"],
             tasks: ["build"]
         },
         copy: {
             main: {
                 files: [
                     {
-                        src: ['app/**','bower_components/**','index.html','!app/**/less/*.less','!app/**/less','!bower_components/**/less/*.less','!bower_components/**/less'],
+                        src: ['directive/**','demo/**','bower_components/**','!directive/less/*.less','!directive/less','!bower_components/**/less/*.less','!bower_components/**/less'],
                         dest: 'build/'
                     }
                 ]
@@ -29,7 +29,7 @@ module.exports = function(grunt) {
         },
         open : {
             dev : {
-                path: 'http://localhost:8080'
+                path: 'http://localhost:8080/demo'
                 //app: 'Google Chrome'
             }
         },
@@ -48,7 +48,7 @@ module.exports = function(grunt) {
             }
         },
         jshint: {
-            all: ['Gruntfile.js', 'app/**/*.js']
+            all: ['Gruntfile.js', '!directive/js/*.js', '!directive/js/*.test.js']
         }
         // server will run at http://localhost:8080
         // source: http://www.sitepoint.com/writing-awesome-build-script-grunt/
