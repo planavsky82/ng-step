@@ -9,7 +9,7 @@ describe('ng-step directive', function () {
         var expected = 4;
 
         // Act
-        var result = counter.add(num1, num2);
+        var result = num1 + num2;
 
         // Assert
         expect(result).toBe(expected);

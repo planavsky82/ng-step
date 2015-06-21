@@ -2,14 +2,16 @@ module.exports = function(config) {
     config.set({
 
         // base path, that will be used to resolve files and exclude
-        basePath: 'directive/',
+        basePath: '',
 
         // frameworks to use
         frameworks: ['jasmine'],
 
         // list of files / patterns to load in the browser
         files: [
-            '**/*.js'
+            'bower_components/angular/angular.js',
+            'directive/js/*.js',
+            'directive/js/*.test.js'
         ],
 
         // list of files to exclude

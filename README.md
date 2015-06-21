@@ -1,4 +1,15 @@
 # ng-step 
 
-READ ME TEST
+Required global installs:
+
+- Node.js
+- NPM
+- Bower
+
+Run after clone:
+
+npm install
+bower install
+
+
 
