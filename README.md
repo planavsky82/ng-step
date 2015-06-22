@@ -8,8 +8,8 @@ Required global installs:
 
 Run after clone:
 
-npm install
-bower install
+- npm install
+- bower install
 
 
 
