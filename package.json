@@ -1,11 +1,11 @@
 {
-  "name": "website",
+  "name": "Planavsky ng-step",
   "version": "0.0.1",
   "main": "Gruntfile.js",
-  "description" : "website",
+  "description" : "angular wizard directive",
   "repository" :
   { "type" : "git",
-    "url" : "http://github.com/npm/npm.git"
+    "url" : "https://github.com/planavsky82/ng-step"
   },
   "devDependencies": {
     "grunt": "~0.4.5",
@@ -26,6 +26,7 @@
     "karma": "~0.10.9",
     "karma-story-reporter": "~0.2.2",
     "grunt-karma": "~0.6.2",
-    "karma-sauce-launcher": "~0.1.8"
+    "karma-sauce-launcher": "~0.1.8",
+    "grunt-angular-file-loader": "*"
   }
 }

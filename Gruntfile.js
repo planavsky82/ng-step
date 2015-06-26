@@ -3,20 +3,31 @@ module.exports = function(grunt) {
         less: {
             development: {
                 files: {
-                    "build/directive/css/main.css": "directive/less/main.less",
-                    "build/directive/css/vendor.css": "directive/less/vendor.less"
+                    "build/demo/vendor.css": "demo/vendor.less"
                 }
             }
         },
         watch: {
             files: ["directive/css/**.less","directive/**","demo/**"],
-            tasks: ["build"]
+            tasks: ["build"],
+            options: {
+              //livereload: true
+            }
         },
         copy: {
             main: {
                 files: [
                     {
-                        src: ['directive/**','demo/**','bower_components/**','!directive/less/*.less','!directive/less','!bower_components/**/less/*.less','!bower_components/**/less'],
+                        src: [
+                            'directive/**',
+                            'demo/**',
+                            'bower_components/**',
+                            '!directive/less/*.less',
+                            '!directive/less',
+                            '!demo/*.less',
+                            '!bower_components/**/less/*.less',
+                            '!bower_components/**/less'
+                        ],
                         dest: 'build/'
                     }
                 ]
@@ -29,7 +40,7 @@ module.exports = function(grunt) {
         },
         open : {
             dev : {
-                path: 'http://localhost:8080/demo'
+                path: 'http://127.0.0.1:8080/demo'
                 //app: 'Google Chrome'
             }
         },
@@ -45,6 +56,19 @@ module.exports = function(grunt) {
         karma: {
             unit: {
                 configFile: 'karma.conf.js'
+            }
+        },
+        angularFileLoader: {
+            options: {
+                scripts: [
+                    'demo/app.js',
+                    'directive/js/*.js',
+                    '!directive/js/*.test.js'
+                ]
+
+            },
+            target: {
+                src: ['build/demo/index.html']
             }
         },
         jshint: {
@@ -63,11 +87,12 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-htmlhint');
     grunt.loadNpmTasks('grunt-karma');
+    grunt.loadNpmTasks('grunt-angular-file-loader');
 
     grunt.registerTask('default', ['karma','build','connect','open','watch']);
     grunt.registerTask(
         'build',
         'Compiles all of the assets and copies the files to the build directory.',
-        ['jshint', 'clean', 'copy', 'less']
+        ['jshint', 'clean', 'copy', 'less','angularFileLoader']
     );
 };
