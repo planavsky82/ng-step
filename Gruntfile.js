@@ -3,8 +3,8 @@ module.exports = function(grunt) {
         less: {
             development: {
                 files: {
-                    "directive/css/main.css": "directive/css/main.less",
-                    "directive/css/vendor.css": "directive/css/vendor.less"
+                    "build/directive/css/main.css": "directive/less/main.less",
+                    "build/directive/css/vendor.css": "directive/less/vendor.less"
                 }
             }
         },
