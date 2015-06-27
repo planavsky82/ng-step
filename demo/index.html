@@ -13,9 +13,9 @@
    <link href="vendor.css" rel="stylesheet" type="text/css"/>
 </head>
 
-<body>
+<body data-ng-controller="demoCtrl as demo">
 
-<ng-step></ng-step>
+<ng-step data-navigation-items="demo.demoObj"></ng-step>
 
 <!-- dependencies -->
 <script src="../bower_components/angular/angular.js"></script>
