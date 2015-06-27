@@ -1,6 +1,6 @@
 'use strict';
 
-describe('ng-step directive', function () {
+describe('ng-step ng-step', function () {
 
     it('test example 1', function () {
         // Arrange

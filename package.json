@@ -1,5 +1,5 @@
 {
-  "name": "Planavsky ng-step",
+  "name": "ng-step",
   "version": "0.0.1",
   "main": "Gruntfile.js",
   "description" : "angular wizard directive",

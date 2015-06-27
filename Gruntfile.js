@@ -8,7 +8,7 @@ module.exports = function(grunt) {
             }
         },
         watch: {
-            files: ["directive/css/**.less","directive/**","demo/**"],
+            files: ["ng-step/css/**.less","ng-step/**","demo/**"],
             tasks: ["build"],
             options: {
               //livereload: true
@@ -19,11 +19,11 @@ module.exports = function(grunt) {
                 files: [
                     {
                         src: [
-                            'directive/**',
+                            'ng-step/**',
                             'demo/**',
                             'bower_components/**',
-                            '!directive/less/*.less',
-                            '!directive/less',
+                            '!ng-step/less/*.less',
+                            '!ng-step/less',
                             '!demo/*.less',
                             '!bower_components/**/less/*.less',
                             '!bower_components/**/less'
@@ -62,8 +62,8 @@ module.exports = function(grunt) {
             options: {
                 scripts: [
                     'demo/app.js',
-                    'directive/js/*.js',
-                    '!directive/js/*.test.js'
+                    'ng-step/js/*.js',
+                    '!ng-step/js/*.test.js'
                 ]
 
             },
@@ -72,7 +72,7 @@ module.exports = function(grunt) {
             }
         },
         jshint: {
-            all: ['Gruntfile.js', '!directive/js/*.js', '!directive/js/*.test.js']
+            all: ['Gruntfile.js', '!ng-step/js/*.js', '!ng-step/js/*.test.js']
         }
         // server will run at http://localhost:8080
         // source: http://www.sitepoint.com/writing-awesome-build-script-grunt/

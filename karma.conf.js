@@ -10,8 +10,8 @@ module.exports = function(config) {
         // list of files / patterns to load in the browser
         files: [
             'bower_components/angular/angular.js',
-            'directive/js/*.js',
-            'directive/js/*.test.js'
+            'ng-step/js/*.js',
+            'ng-step/js/*.test.js'
         ],
 
         // list of files to exclude

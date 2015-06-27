@@ -8,7 +8,7 @@ ngStep.$inject = [];
 function ngStep() {
 
   var directive = {
-    templateUrl: '/directive/views/index.html',
+    templateUrl: '/ng-step/views/index.html',
     restrict: 'E',
     scope: {
 
