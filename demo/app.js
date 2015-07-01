@@ -8,7 +8,7 @@
 
       .controller('demoCtrl', demoCtrl);
 
-  ngStep.$inject = [];
+  demoCtrl.$inject = [];
 
   function demoCtrl() {
 

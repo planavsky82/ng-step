@@ -3,7 +3,8 @@ module.exports = function(grunt) {
         less: {
             development: {
                 files: {
-                    "build/demo/vendor.css": "demo/vendor.less"
+                    "build/demo/vendor.css": "demo/vendor.less",
+                    "build/ng-step/css/main.css": "ng-step/less/main.less"
                 }
             }
         },
@@ -22,8 +23,6 @@ module.exports = function(grunt) {
                             'ng-step/**',
                             'demo/**',
                             'bower_components/**',
-                            '!ng-step/less/*.less',
-                            '!ng-step/less',
                             '!demo/*.less',
                             '!bower_components/**/less/*.less',
                             '!bower_components/**/less'
