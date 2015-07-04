@@ -47,6 +47,11 @@ function ngStep($http, $compile, $timeout) {
 
     vm.displayProgressBar = $attrs.displayProgressBar;
     vm.displayToken = $attrs.displayToken;
+    vm.displayButtons = $attrs.displayButtons;
+
+    vm.navigate = function (action) {
+
+    };
 
     var init = function () {
 
