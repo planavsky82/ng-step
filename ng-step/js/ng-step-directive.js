@@ -3,30 +3,37 @@
 angular.module('planavsky.directive.ngStep',[])
   .directive('ngStep', ngStep);
 
-ngStep.$inject = ['$http', '$compile'];
+ngStep.$inject = ['$http', '$compile', '$timeout'];
 
-function ngStep($http, $compile) {
+function ngStep($http, $compile, $timeout) {
 
   var directive = {
     templateUrl: '/ng-step/views/index.html',
     restrict: 'E',
     scope: {
-      navigationItems: '=' // rename!!!!
+      items: '='
     },
     compile: compile,
     controller: controller,
     controllerAs: 'vm',
-    bindToController: true,
-    transclude: true //REMOVE!!!!
+    bindToController: true
   };
 
   return directive;
 
   function compile (element, attrs) {
 
-    /* if (!attrs.heightLimit) {
-      attrs.heightLimit = 0;
-    } */
+    if (!attrs.displayProgressBar) {
+      attrs.displayProgressBar = false;
+    }
+
+    if (!attrs.displayToken) {
+      attrs.displayToken = true;
+    }
+
+    if (!attrs.displayButtons) {
+      attrs.displayButtons = true;
+    }
 
     return {
       post: link
@@ -38,28 +45,35 @@ function ngStep($http, $compile) {
 
     var vm = this;
 
-    /* vm.setDisplay = function (display) {
-      vm.displayLink = display;
-    }; */
+    vm.displayProgressBar = $attrs.displayProgressBar;
+    vm.displayToken = $attrs.displayToken;
 
-  }
+    var init = function () {
 
-  function link (scope, element, attrs) {
+      angular.forEach(vm.items, function (item, key) {
 
-     /*
+        if (!item.templateLoaded) {
+          item.templateLoaded = false;
+        }
 
-     sample data model:
+        if (navItem.id === scope.activeId) {
+          /* navItem['active'] = true;
 
-     navigationItems:
+           // load specified templates if available
+           if (scope.uiView && !navItem['templateLoaded']) {
+           navItem['uiView'] = 'benefits.adp.step.navigation.' + navItem.id;
+           loadUrl(navItem.url, navItem.uiView);
+           navItem['templateLoaded'] = true;
+           }*/
 
-     [{
-     id : 'id',
-     icon : 'icon',
-     desc : 'desc' (optional),
-     url : '{ view path }' (optional)
-     }]
+        }
+        else {
+          //navItem['active'] = false;
+        }
 
-     */
+      });
+
+    };
 
     var loadUrl = function (url, uiView) {
 
@@ -77,6 +91,29 @@ function ngStep($http, $compile) {
       }, 1);
 
     };
+
+  }
+
+  function link (scope, element, attrs) {
+
+    /*
+
+     sample data model:
+
+     items:
+
+     [{
+     id : 'id',
+     icon : 'icon',
+     desc : 'desc' (optional),
+     url : '{ view path }' (optional)
+     }]
+
+    */
+
+    console.log(scope);
+
+
 
   }
 

@@ -6,7 +6,7 @@
     'planavsky.directive.ngStep'
   ])
 
-      .controller('demoCtrl', demoCtrl);
+  .controller('demoCtrl', demoCtrl);
 
   demoCtrl.$inject = [];
 
@@ -17,20 +17,20 @@
     vm.demoObj = [
       {
         id : 1,
-        icon : 'icon',
-        desc : 'desc',
+        icon : 'icon1',
+        desc : 'desc1',
         url : ''
       },
       {
         id : 2,
-        icon : 'icon',
-        desc : 'desc',
+        icon : 'icon2',
+        desc : 'desc2',
         url : ''
       },
       {
         id : 3,
-        icon : 'icon',
-        desc : 'desc',
+        icon : 'icon3',
+        desc : 'desc3',
         url : ''
       }
     ];

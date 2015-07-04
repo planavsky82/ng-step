@@ -1,89 +1,24 @@
 <div>
-    <!-- {{ vm.displayLink }} -->
-    TESTING
-</div>
+    <div data-ng-if="vm.displayProgressBar">
+        Progress Bar
+    </div>
+    {{vm.items.length}}
+    <div data-ng-repeat="item in vm.items">
 
-<div class="adp-step-navigation-wrapper">
-    <a id="adp-step-navigation-top"></a>
-
-    <div class="adp-step-navigation"
-         data-ng-hide="navigationItems.length === 1 && layout === 'horizontal'"
-         data-ng-class="{'adp-step-navigation-vertical': layout === 'vertical'}">
-
-        <div class="adp-step-navigation-line-container">
-            <div class="adp-step-navigation-line adp-step-navigation-line-left"></div>
-            <div class="adp-step-navigation-line adp-step-navigation-line-center"></div>
-            <div class="adp-step-navigation-line adp-step-navigation-line-right"></div>
-        </div>
-
-        <div class="adp-step-navigation-container">
-            <li data-ng-repeat="item in displaySet"
-                data-ng-class="item.active ? 'active' : 'inactive'"
-                id="adp-step-navigation-element-{{$index}}"
-                data-ng-style="{ 'width' : sectionWidthPercentage }">
-                <div class="adp-step-navigation-next-line {{baseColor}}-border"
-                     data-ng-class="item.addressed ? 'display-line' : ''">
-                    <div data-ng-if="layout === 'vertical' && !staticIcons"
-                         data-ng-class="item.addressed ? 'display-line' : ''"></div>
-                </div>
-                <div class="adp-step-navigation-icon {{baseColor}}-bg"
-                     data-ng-class="item.active ? 'brand-primary-bgcolor' : ''">
-                    <i class="{{item.icon}}"></i>
-                </div>
-                <div class="adp-step-navigation-desc"
-                     data-ng-if="layout === 'horizontal' && item.desc">
-                    <span data-ng-class="item.active ? 'brand-primary-color' : ''">
-                      {{item.desc}}
-                    </span>
-                </div>
-            </li>
-        </div>
+        {{ item.desc }}
+        <!-- <div ui-view="{{ item.url }}"></div> -->
 
     </div>
 
-    <div data-ng-transclude
-         data-ng-if="!animateContent"
-         class="adp-step-navigation-content"
-         data-ng-class="{'adp-step-navigation-vertical': layout == 'vertical'}">
-
+    <div data-ng-if="vm.displayToken">
+        Token
     </div>
-
-    <div data-ng-if="animateContent"
-         class="adp-step-navigation-content-container">
-
-        <div data-ng-if="!uiView"
-             data-ng-transclude
-             class="adp-step-navigation-content content-pane"
-             data-ng-class="{'adp-step-navigation-vertical': layout == 'vertical'}"
-             data-ng-repeat="item in navigationItems"
-             id="adp-step-navigation-content-{{ $index }}">
-        </div>
-
-        <div data-ng-if="uiView"
-             class="adp-step-navigation-content content-pane"
-             data-ng-class="{'adp-step-navigation-vertical': layout == 'vertical'}"
-             data-ng-repeat="item in navigationItems">
-
-            <div ui-view="{{item.uiView}}"></div>
-
-        </div>
-
-    </div>
-
-    <div class="adp-step-navigation-content-clear"></div>
-
-    <div class="btn-container" data-ng-if="handleNavigation">
-        <button ng-click="navigate('previous')"
-                adp-button="secondary"
-                icon="chevron-left">
-            {{::previousBtnText}}
+    <div data-ng-if="vm.displayButtons">
+        <button ng-click="navigate('previous')">
+            Previous
         </button>
-        <button ng-click="navigate('next')"
-                adp-button="primary"
-                icon="chevron-right"
-                icon-position="right">
-            {{::nextBtnText}}
+        <button data-ng-click="navigate('next')">
+            Next
         </button>
     </div>
-
 </div>

@@ -8,7 +8,8 @@
     "bootstrap": "v3.1.1",
     "fontawesome": "v4.0.3",
     "jquery": "~2.x",
-    "modernizr": "2.7.2"
+    "modernizr": "2.7.2",
+    "lodash": "~2.4.1"
   },
   "private": true
 }
