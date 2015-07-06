@@ -1,19 +1,22 @@
-<div>
-    <div data-ng-if="vm.displayProgressBar">
-        Progress Bar
+<div class="planavsky-ng-step">
+    <div class="ng-step-container">
+        <div data-ng-if="vm.displayProgressBar">
+            Progress Bar
+        </div>
+
+        <div data-ng-repeat="item in vm.items">
+
+            <div ui-view="{{ item.uiView }}"></div>
+
+        </div>
+        <div class="ng-step-token"
+             data-ng-if="vm.displayToken">
+            Token
+        </div>
     </div>
 
-    <div data-ng-repeat="item in vm.items">
-
-        {{ item.url }}
-        <!-- <div ui-view="{{ item.url }}"></div> -->
-
-    </div>
-
-    <div data-ng-if="vm.displayToken">
-        Token
-    </div>
-    <div data-ng-if="vm.displayButtons">
+    <div class="ng-step-navigation"
+         data-ng-if="vm.displayButtons">
         <button data-ng-click="vm.navigate('previous')">
             Previous
         </button>

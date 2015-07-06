@@ -1,0 +1,33 @@
+@import "../../bower_components/bootstrap/less/variables.less";
+@import "../../bower_components/fontawesome/less/variables.less";
+@import (reference) "../../bower_components/bootstrap/less/mixins.less";
+@import (reference) "../../bower_components/fontawesome/less/mixins.less";
+@import "variables.less";
+@import "mixins.less";
+
+.planavsky-ng-step {
+
+  .ng-step-container {
+    border: 1px solid @grey;
+    position: relative;
+    min-height: 100px;
+
+    .ng-step-token {
+      border: 1px solid @grey;
+      position: relative;
+      width: 90px;
+      height: 90px;
+      .mixin-border-radius(90px);
+      text-align: center;
+      position: absolute;
+      right: 5px;
+      bottom: -10px;
+    }
+  }
+
+  .ng-step-navigation {
+    margin-top: 10px;
+    text-align: center;
+  }
+
+}

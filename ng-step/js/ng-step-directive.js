@@ -61,20 +61,22 @@ function ngStep($http, $compile, $timeout) {
           item.templateLoaded = false;
         }
 
-        if (navItem.id === scope.activeId) {
-          /* navItem['active'] = true;
+        loadUrl(item.url, item.uiView);
+
+        /* if (navItem.id === scope.activeId) {
+           navItem['active'] = true;
 
            // load specified templates if available
            if (scope.uiView && !navItem['templateLoaded']) {
            navItem['uiView'] = 'benefits.adp.step.navigation.' + navItem.id;
            loadUrl(navItem.url, navItem.uiView);
            navItem['templateLoaded'] = true;
-           }*/
+           }
 
         }
         else {
           //navItem['active'] = false;
-        }
+        } */
 
       });
 
@@ -90,12 +92,14 @@ function ngStep($http, $compile, $timeout) {
         // Manually load content into ui-view
         $http.get(url).success(function(html) {
           content.html(html);
-          $compile(content)(scope);
+          $compile(content)($scope);
         });
 
       }, 1);
 
     };
+
+    init();
 
   }
 
@@ -115,10 +119,6 @@ function ngStep($http, $compile, $timeout) {
      }]
 
     */
-
-    console.log(scope);
-
-
 
   }
 
