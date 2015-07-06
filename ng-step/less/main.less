@@ -11,6 +11,19 @@
     border: 1px solid @grey;
     position: relative;
     min-height: 100px;
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+
+    .ng-step-content-pane {
+      display: inline-block;
+      white-space: normal;
+      left: 0px;
+      position: relative;
+      width: 100%;
+      .transition(left 1.5s);
+    }
 
     .ng-step-token {
       border: 1px solid @grey;
