@@ -5,6 +5,8 @@ angular.module('planavsky.directive.ngStep',[])
 
 ngStep.$inject = ['$http', '$compile', '$timeout'];
 
+// TODO: get rid of jquery references and figure out why angular.element cant be used as a selector
+
 function ngStep($http, $compile, $timeout) {
 
   var directive = {
@@ -48,8 +50,20 @@ function ngStep($http, $compile, $timeout) {
     vm.displayProgressBar = $attrs.displayProgressBar;
     vm.displayToken = $attrs.displayToken;
     vm.displayButtons = $attrs.displayButtons;
+    vm.activeId = 0;
+    vm.lastId = vm.items.length - 1;
 
     vm.navigate = function (action) {
+
+      if (action === 'previous') {
+        vm.activeId--;
+      }
+
+      if (action === 'next') {
+        vm.activeId++;
+      }
+
+      $scope.changeView(vm.activeId);
 
     };
 
@@ -58,25 +72,10 @@ function ngStep($http, $compile, $timeout) {
       angular.forEach(vm.items, function (item, key) {
 
         if (!item.templateLoaded) {
-          item.templateLoaded = false;
+          item.templateLoaded = true;
+          item.uiView = 'planavsky.ng.step.ui.view-' + key;
+          loadUrl(item.url, item.uiView);
         }
-
-        loadUrl(item.url, item.uiView);
-
-        /* if (navItem.id === scope.activeId) {
-           navItem['active'] = true;
-
-           // load specified templates if available
-           if (scope.uiView && !navItem['templateLoaded']) {
-           navItem['uiView'] = 'benefits.adp.step.navigation.' + navItem.id;
-           loadUrl(navItem.url, navItem.uiView);
-           navItem['templateLoaded'] = true;
-           }
-
-        }
-        else {
-          //navItem['active'] = false;
-        } */
 
       });
 
@@ -119,6 +118,25 @@ function ngStep($http, $compile, $timeout) {
      }]
 
     */
+
+    scope.changeView = function (activeId) {
+
+      // animate eventually, just show/hide for now
+      angular.forEach(scope.vm.items, function (item, key) {
+
+        if (key === activeId) {
+          $('#ng-step-content-pane-' + key).show();
+          console.log('show ' + key);
+        }
+        else
+        {
+          $('#ng-step-content-pane-' + key).hide();
+          console.log('hide ' + key);
+        }
+
+      });
+
+    };
 
   }
 

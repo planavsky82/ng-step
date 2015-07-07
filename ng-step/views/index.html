@@ -4,25 +4,29 @@
             Progress Bar
         </div>
 
-        <div class="ng-step-content-pane"
+        <div id="ng-step-content-pane-{{ $index }}"
+             class="ng-step-content-pane"
              data-ng-repeat="item in vm.items">
 
             <div ui-view="{{ item.uiView }}"></div>
 
         </div>
-        <div class="ng-step-token"
-             data-ng-if="vm.displayToken">
-            Token
-        </div>
     </div>
 
     <div class="ng-step-navigation"
          data-ng-if="vm.displayButtons">
-        <button data-ng-click="vm.navigate('previous')">
+        <button data-ng-if="vm.activeId !== 0"
+                data-ng-click="vm.navigate('previous')">
             Previous
         </button>
-        <button data-ng-click="vm.navigate('next')">
+        <button data-ng-if="vm.activeId !== vm.lastId"
+                data-ng-click="vm.navigate('next')">
             Next
         </button>
+
+        <div class="ng-step-token"
+             data-ng-if="vm.displayToken">
+            Token
+        </div>
     </div>
 </div>
