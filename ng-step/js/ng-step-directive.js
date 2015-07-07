@@ -111,10 +111,9 @@ function ngStep($http, $compile, $timeout) {
      items:
 
      [{
-     id : 'id',
-     icon : 'icon',
-     desc : 'desc' (optional),
-     url : '{ view path }' (optional)
+      icon : 'icon',
+      desc : 'desc' (optional),
+      url : '{ view path }' (optional)
      }]
 
     */
