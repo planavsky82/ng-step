@@ -3,11 +3,11 @@
 angular.module('planavsky.directive.ngStep',[])
   .directive('ngStep', ngStep);
 
-ngStep.$inject = ['$http', '$compile', '$timeout'];
+ngStep.$inject = ['$http', '$compile', '$timeout', '$location', '$anchorScroll'];
 
 // TODO: get rid of jquery references and figure out why angular.element cant be used as a selector
 
-function ngStep($http, $compile, $timeout) {
+function ngStep($http, $compile, $timeout, $location, $anchorScroll) {
 
   var directive = {
     templateUrl: '/ng-step/views/index.html',
@@ -120,10 +120,36 @@ function ngStep($http, $compile, $timeout) {
 
     scope.changeView = function (activeId) {
 
-      // animate eventually, just show/hide for now
+      if (!scope.position) {
+        scope.position = 0;
+      }
+
+      scope.paneWidth = $('.ng-step-content-pane')[0].offsetWidth;
+
+      $location.hash('ng-step-top');
+      $anchorScroll();
+
+      /* angular.forEach(scope.vm.items, function (item, key) {
+
+        if (item.id === scope.activeId) {
+          if (item.previousId === lastActiveId) {
+            scope.position -= scope.paneWidth;
+            transition(scope.position, key);
+          }
+
+          if (item.nextId === lastActiveId) {
+            scope.position += scope.paneWidth;
+            transition(scope.position, key);
+          }
+        }
+
+      }); */
+
       angular.forEach(scope.vm.items, function (item, key) {
 
-        if (key === activeId) {
+        $('#ng-step-content-pane-' + key).css('left', '-' + scope.paneWidth + 'px');
+
+        /* if (key === activeId) {
           $('#ng-step-content-pane-' + key).show();
           console.log('show ' + key);
         }
@@ -131,7 +157,7 @@ function ngStep($http, $compile, $timeout) {
         {
           $('#ng-step-content-pane-' + key).hide();
           console.log('hide ' + key);
-        }
+        } */
 
       });
 
