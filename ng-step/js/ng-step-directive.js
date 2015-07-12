@@ -52,6 +52,7 @@ function ngStep($http, $compile, $timeout, $location, $anchorScroll) {
     vm.displayButtons = $attrs.displayButtons;
     vm.activeId = 0;
     vm.lastId = vm.items.length - 1;
+    vm.lastActiveId = 0;
 
     vm.navigate = function (action) {
 
@@ -63,6 +64,8 @@ function ngStep($http, $compile, $timeout, $location, $anchorScroll) {
         vm.activeId++;
       }
 
+      init();
+
       $scope.changeView(vm.activeId);
 
     };
@@ -71,11 +74,45 @@ function ngStep($http, $compile, $timeout, $location, $anchorScroll) {
 
       angular.forEach(vm.items, function (item, key) {
 
+        if (item.active) {
+          vm.lastActiveId = key;
+        }
+
+        item.id = key;
+
         if (!item.templateLoaded) {
           item.templateLoaded = true;
-          item.uiView = 'planavsky.ng.step.ui.view-' + key;
-          loadUrl(item.url, item.uiView);
         }
+
+        item.uiView = 'planavsky.ng.step.ui.view-' + key;
+
+        if (key === vm.activeId) {
+          item.active = true;
+        }
+        else
+        {
+          item.active = false;
+        }
+
+        // find previous id
+        if (key > 0) {
+          item.previousId = key - 1;
+        }
+        else
+        {
+          item.previousId = 'none';
+        }
+
+        // find next id
+        if (key < vm.items.length - 1) {
+          item.nextId = key + 1;
+        }
+        else
+        {
+          item.nextId = 'none';
+        }
+
+        loadUrl(item.url, item.uiView);
 
       });
 
@@ -129,35 +166,42 @@ function ngStep($http, $compile, $timeout, $location, $anchorScroll) {
       $location.hash('ng-step-top');
       $anchorScroll();
 
-      /* angular.forEach(scope.vm.items, function (item, key) {
+      angular.forEach(scope.vm.items, function (item, key) {
 
-        if (item.id === scope.activeId) {
-          if (item.previousId === lastActiveId) {
+        if (item.id === activeId) {
+
+          if (item.previousId === scope.vm.lastActiveId) {
             scope.position -= scope.paneWidth;
             transition(scope.position, key);
           }
 
-          if (item.nextId === lastActiveId) {
+          if (item.nextId === scope.vm.lastActiveId) {
             scope.position += scope.paneWidth;
             transition(scope.position, key);
           }
         }
 
-      }); */
+      });
+
+    };
+
+    var transition = function (position, newIndex) {
+
+      console.log(position);
 
       angular.forEach(scope.vm.items, function (item, key) {
 
-        $('#ng-step-content-pane-' + key).css('left', '-' + scope.paneWidth + 'px');
+        $('#ng-step-content-pane-' + key).css('left', position + 'px');
 
         /* if (key === activeId) {
-          $('#ng-step-content-pane-' + key).show();
-          console.log('show ' + key);
-        }
-        else
-        {
-          $('#ng-step-content-pane-' + key).hide();
-          console.log('hide ' + key);
-        } */
+         $('#ng-step-content-pane-' + key).show();
+         console.log('show ' + key);
+         }
+         else
+         {
+         $('#ng-step-content-pane-' + key).hide();
+         console.log('hide ' + key);
+         } */
 
       });
 
