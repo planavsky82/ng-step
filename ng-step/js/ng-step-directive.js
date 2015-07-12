@@ -187,8 +187,6 @@ function ngStep($http, $compile, $timeout, $location, $anchorScroll) {
 
     var transition = function (position, newIndex) {
 
-      console.log(position);
-
       angular.forEach(scope.vm.items, function (item, key) {
 
         $('#ng-step-content-pane-' + key).css('left', position + 'px');
