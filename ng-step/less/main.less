@@ -4,6 +4,7 @@
 @import (reference) "../../bower_components/fontawesome/less/mixins.less";
 @import "variables.less";
 @import "mixins.less";
+@import "flipper.less";
 
 .planavsky-ng-step {
 
@@ -32,15 +33,20 @@
     position: relative;
 
     .ng-step-token {
-      border: 1px solid @grey;
       position: relative;
       width: 90px;
       height: 90px;
-      .mixin-border-radius(90px);
       text-align: center;
       position: absolute;
       right: 5px;
       bottom: -10px;
+
+      .front, .back {
+        width: 90px;
+        height: 90px;
+        border: 1px solid @grey;
+        .mixin-border-radius(90px);
+      }
     }
   }
 

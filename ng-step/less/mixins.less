@@ -4,3 +4,17 @@
   .border-left-radius(@radius);
   .border-right-radius(@radius);
 }
+
+.transform-style(@style) {
+  -webkit-transform-style: @style;
+  -moz-transform-style: @style;
+  -o-transform-style: @style;
+  -ms-transform-style: @style;
+  transform-style: @style;
+}
+
+.no-transform(){
+  transform: none;
+  -webkit-transform: none;
+  -ms-transform: none;
+}

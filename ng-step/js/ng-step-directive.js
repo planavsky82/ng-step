@@ -5,7 +5,7 @@ angular.module('planavsky.directive.ngStep',[])
 
 ngStep.$inject = ['$http', '$compile', '$timeout', '$location', '$anchorScroll'];
 
-// TODO: get rid of jquery references and figure out why angular.element cant be used as a selector
+// TODO: get rid of jquery references and figure out why angular.element cant be used as a selector. Use anular.element($document[0].querySelectorAll('#element'));?
 
 function ngStep($http, $compile, $timeout, $location, $anchorScroll) {
 
@@ -67,6 +67,7 @@ function ngStep($http, $compile, $timeout, $location, $anchorScroll) {
       init();
 
       $scope.changeView(vm.activeId);
+      $scope.flip('token');
 
     };
 
@@ -154,6 +155,20 @@ function ngStep($http, $compile, $timeout, $location, $anchorScroll) {
      }]
 
     */
+
+    scope.flip = function(cardId){
+      if (Modernizr.csstransitions) {
+        document.querySelector('#flip-toggle-' + cardId).classList.toggle('hover');
+      }else{
+        if ($('#flip-toggle-' + cardId + ' .front').css('display') === 'block'){
+          $('#flip-toggle-' + cardId + ' .front').hide();
+          $('#flip-toggle-' + cardId + ' .back').show();
+        }else{
+          $('#flip-toggle-' + cardId + ' .front').show();
+          $('#flip-toggle-' + cardId + ' .back').hide();
+        }
+      }
+    };
 
     scope.changeView = function (activeId) {
 

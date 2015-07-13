@@ -28,7 +28,17 @@
 
         <div class="ng-step-token"
              data-ng-if="vm.displayToken">
-            Token
+            <div class="flip-container" id="flip-toggle-token">
+                <div class="flipper" ng-transclude>
+                    <div class="front">
+                        Token 1
+                    </div>
+                    <div class="back">
+                        Token 2
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
 </div>
