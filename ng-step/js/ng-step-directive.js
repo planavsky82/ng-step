@@ -26,7 +26,7 @@ function ngStep($http, $compile, $timeout, $location, $anchorScroll, $q) {
   function compile (element, attrs) {
 
     if (!attrs.displayProgressBar) {
-      attrs.displayProgressBar = false;
+      attrs.displayProgressBar = true;
     }
 
     if (!attrs.displayToken) {
