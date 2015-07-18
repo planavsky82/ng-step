@@ -3,11 +3,11 @@
 angular.module('planavsky.directive.ngStep',[])
   .directive('ngStep', ngStep);
 
-ngStep.$inject = ['$http', '$compile', '$timeout', '$location', '$anchorScroll'];
+ngStep.$inject = ['$http', '$compile', '$timeout', '$location', '$anchorScroll', '$q'];
 
 // TODO: get rid of jquery references and figure out why angular.element cant be used as a selector. Use anular.element($document[0].querySelectorAll('#element'));?
 
-function ngStep($http, $compile, $timeout, $location, $anchorScroll) {
+function ngStep($http, $compile, $timeout, $location, $anchorScroll, $q) {
 
   var directive = {
     templateUrl: '/ng-step/views/index.html',
@@ -53,23 +53,11 @@ function ngStep($http, $compile, $timeout, $location, $anchorScroll) {
     vm.activeId = 0;
     vm.lastId = vm.items.length - 1;
     vm.lastActiveId = 0;
-
-    vm.navigate = function (action) {
-
-      if (action === 'previous') {
-        vm.activeId--;
-      }
-
-      if (action === 'next') {
-        vm.activeId++;
-      }
-
-      init();
-
-      $scope.changeView(vm.activeId);
-      $scope.flip('token');
-
-    };
+    vm.icon1 = vm.items[0].icon;
+    vm.icon2 = vm.items[1].icon;
+    vm.desc1 = vm.items[0].shortDesc;
+    vm.desc2 = vm.items[1].shortDesc;
+    vm.tokenDisplay = 'front';
 
     var init = function () {
 
@@ -119,6 +107,28 @@ function ngStep($http, $compile, $timeout, $location, $anchorScroll) {
 
     };
 
+    vm.navigate = function (action) {
+
+      if (action === 'previous') {
+        vm.activeId--;
+      }
+
+      if (action === 'next') {
+        vm.activeId++;
+      }
+
+      init();
+
+      $scope.flip('token').then(function() {
+
+        $scope.fadeInIcon();
+        $scope.changeView(vm.activeId);
+        $scope.updateStatusBar();
+
+      });
+
+    };
+
     var loadUrl = function (url, uiView) {
 
       // adding $timeout so that the container divs can be referenced after the dom is loaded
@@ -150,13 +160,24 @@ function ngStep($http, $compile, $timeout, $location, $anchorScroll) {
 
      [{
       icon : 'icon',
-      desc : 'desc' (optional),
+      shortDesc : 'shortDesc' (optional),
       url : '{ view path }' (optional)
      }]
 
     */
 
     scope.flip = function(cardId){
+
+      scope.vm.icon1 = '';
+      scope.vm.icon2 = '';
+      scope.vm.desc1 = '';
+      scope.vm.desc2 = '';
+
+      $('.ng-step-token .front').removeClass('loaded');
+      $('.ng-step-token .back').removeClass('loaded');
+
+      var deferred = $q.defer();
+
       if (Modernizr.csstransitions) {
         document.querySelector('#flip-toggle-' + cardId).classList.toggle('hover');
       }else{
@@ -168,6 +189,19 @@ function ngStep($http, $compile, $timeout, $location, $anchorScroll) {
           $('#flip-toggle-' + cardId + ' .back').hide();
         }
       }
+
+      if (scope.vm.tokenDisplay === 'front') {
+        scope.vm.tokenDisplay = 'back'
+      }
+      else
+      {
+        scope.vm.tokenDisplay = 'front'
+      }
+
+      deferred.resolve();
+
+      return deferred.promise;
+
     };
 
     scope.changeView = function (activeId) {
@@ -200,25 +234,53 @@ function ngStep($http, $compile, $timeout, $location, $anchorScroll) {
 
     };
 
+    scope.fadeInIcon = function () {
+
+      $timeout(function () {
+
+        if (scope.vm.tokenDisplay === 'front') {
+
+          scope.vm.icon1 = scope.vm.items[scope.vm.activeId].icon;
+          scope.vm.desc1 = scope.vm.items[scope.vm.activeId].shortDesc;
+
+          $('.ng-step-token .front').addClass('loaded');
+
+        }
+        else
+        {
+
+          scope.vm.icon2 = scope.vm.items[scope.vm.activeId].icon;
+          scope.vm.desc2 = scope.vm.items[scope.vm.activeId].shortDesc;
+
+          $('.ng-step-token .back').addClass('loaded');
+
+        }
+
+      }, 1000);
+
+    };
+
+    scope.updateStatusBar = function () {
+
+      var step = scope.vm.activeId + 1;
+      var total = scope.vm.items.length;
+      var percentage = (step/total) * 100;
+
+      $('.ng-step-status-bar-fill').css('width', percentage + '%');
+
+    };
+
     var transition = function (position, newIndex) {
 
       angular.forEach(scope.vm.items, function (item, key) {
 
         $('#ng-step-content-pane-' + key).css('left', position + 'px');
 
-        /* if (key === activeId) {
-         $('#ng-step-content-pane-' + key).show();
-         console.log('show ' + key);
-         }
-         else
-         {
-         $('#ng-step-content-pane-' + key).hide();
-         console.log('hide ' + key);
-         } */
-
       });
 
     };
+
+    scope.updateStatusBar();
 
   }
 

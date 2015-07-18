@@ -2,6 +2,10 @@
     <a id="ng-step-top"></a>
 
     <div class="ng-step-container">
+        <div class="ng-step-status-bar">
+            <div class="ng-step-status-bar-fill"></div>
+        </div>
+
         <div data-ng-if="vm.displayProgressBar">
             Progress Bar
         </div>
@@ -29,12 +33,14 @@
         <div class="ng-step-token"
              data-ng-if="vm.displayToken">
             <div class="flip-container" id="flip-toggle-token">
-                <div class="flipper" ng-transclude>
-                    <div class="front">
-                        Token 1
+                <div class="flipper">
+                    <div class="front loaded">
+                        <i class="fa {{ vm.icon1 }}"></i>
+                        <div>{{ vm.desc1 }}</div>
                     </div>
                     <div class="back">
-                        Token 2
+                        <i class="fa {{ vm.icon2 }}"></i>
+                        <div>{{ vm.desc2 }}</div>
                     </div>
                 </div>
             </div>
