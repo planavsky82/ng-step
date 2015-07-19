@@ -18,3 +18,11 @@
   -webkit-transform: none;
   -ms-transform: none;
 }
+
+.mixin-opacity(@opacity: 0) {
+  opacity: @opacity;
+  -moz-opacity: @opacity;
+  -webkit-opacity: @opacity;
+  -o-opacity: @opacity;
+  -ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(Opacity=85)";
+}

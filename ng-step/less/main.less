@@ -14,10 +14,10 @@
     .ng-step-status-bar {
       width: 100%;
       height:10px;
-      background: @grey;
+      background: @grey-darkest;
 
       .ng-step-status-bar-fill {
-        background: @yellow;
+        background: @accent-1;
         width: 0;
         height:10px;
         .transition(width 1.5s);
@@ -51,10 +51,13 @@
       .front, .back {
         width: 90px;
         height: 90px;
-        border: 1px solid @grey;
+        border: 3px solid @grey-darkest;
+        color: @grey-darkest;
         .mixin-border-radius(90px);
         font-size: 3em;
         line-height: 1.8em;
+        background: @accent-1;
+        .mixin-opacity(.75);
 
         i {
           opacity: 0;
@@ -65,7 +68,7 @@
           opacity: 0;
           font-size: 12px;
           line-height: 12px;
-          margin-top: -10px;
+          margin-top: -15px;
           .transition(opacity 1s ease-in);
         }
 
