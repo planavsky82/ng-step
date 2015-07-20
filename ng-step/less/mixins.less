@@ -26,3 +26,9 @@
   -o-opacity: @opacity;
   -ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(Opacity=85)";
 }
+
+.mixin-box-shadow (@blur, @spread, @color: #000) {
+  -moz-box-shadow: 0 0 @blur @spread @color;
+  -webkit-box-shadow: 0 0 @blur @spread @color;
+  box-shadow: 0 0 @blur @spread @color;
+}
