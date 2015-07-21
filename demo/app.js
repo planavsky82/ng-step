@@ -16,17 +16,17 @@
 
     vm.demoObj = [
       {
-        icon : 'fa-anchor',
+        icon : 'fa-html5',
         shortDesc : 'desc1',
         url : 'pages/page-1.html'
       },
       {
-        icon : 'fa-coffee',
+        icon : 'fa-moon-o',
         shortDesc : 'desc2',
         url : 'pages/page-2.html'
       },
       {
-        icon : 'fa-eye',
+        icon : 'fa-group',
         shortDesc : 'desc3',
         url : 'pages/page-3.html'
       },
@@ -36,7 +36,7 @@
         url : 'pages/page-4.html'
       },
       {
-        icon : 'fa-magnet',
+        icon : 'fa-leaf',
         shortDesc : 'desc5',
         url : 'pages/page-5.html'
       }
