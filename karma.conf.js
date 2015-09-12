@@ -10,16 +10,22 @@ module.exports = function(config) {
         // list of files / patterns to load in the browser
         files: [
             'bower_components/angular/angular.js',
+            'bower_components/angular-mocks/angular-mocks.js',
             'ng-step/js/*.js',
-            'ng-step/js/*.test.js'
+            'ng-step/js/*.test.js',
+            '**/*.html'
         ],
 
         // list of files to exclude
         exclude: [
         ],
 
+        ngHtml2JsPreprocessor: {
+            moduleName: 'templates'
+        },
+
         // test results reporter to use
-        reporters: ['progress'],
+        reporters: ['progress', 'html', 'coverage'],
 
         // web server port
         port: 9876,
@@ -41,6 +47,18 @@ module.exports = function(config) {
 
         // Continuous Integration mode
         // if true, it captures browsers, run tests and exit
-        singleRun: true
+        singleRun: true,
+
+        preprocessors: {
+            '**/*.html': ['ng-html2js'],
+            '**/*.js': ['coverage']
+        },
+
+        htmlReporter: {
+            outputFile: 'build/tests/test_report.html'
+        },
+
+        coverageReporter: { type : 'html', dir : 'build/tests/coverage/', file: 'coverage.xml' }
+
     });
 };

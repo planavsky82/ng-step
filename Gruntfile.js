@@ -41,6 +41,9 @@ module.exports = function(grunt) {
             dev : {
                 path: 'http://127.0.0.1:8080/demo'
                 //app: 'Google Chrome'
+            },
+            report : {
+                path : 'http://127.0.0.1:8080/tests/test_report.html'
             }
         },
         connect: {
@@ -88,10 +91,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-angular-file-loader');
 
-    grunt.registerTask('default', ['karma','build','connect','open','watch']);
+    grunt.registerTask('default', ['build','karma','connect','open:dev','watch']);
     grunt.registerTask(
         'build',
         'Compiles all of the assets and copies the files to the build directory.',
-        ['jshint', 'clean', 'copy', 'less','angularFileLoader']
+        ['jshint', 'clean', 'copy', 'less', 'angularFileLoader']
     );
+    grunt.registerTask('coverage', ['build','karma','connect','open','watch']);
 };
