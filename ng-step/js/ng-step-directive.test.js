@@ -2,46 +2,21 @@
 
 describe('ng-step', function () {
 
-    var element, scope, controller;
+    var element,
+        scope,
+        controller,
+        sampleData;
 
+    beforeEach(module('demo'));
     beforeEach(module('planavsky.directive.ngStep'));
     beforeEach(module('ng-step/views/index.html'));
     beforeEach(module('mock-data/sample-data.json'));
 
-    beforeEach(inject(function($rootScope, $compile, $httpBackend) {
+    beforeEach(inject(function($rootScope, $compile, $injector, $httpBackend) {
 
         scope = $rootScope.$new();
-
-        // use mock api data here
-        scope.demoData = [
-            {
-                icon : 'fa-html5',
-                shortDesc : 'desc1',
-                url : 'pages/page-1.html'
-            },
-            {
-                icon : 'fa-moon-o',
-                shortDesc : 'desc2',
-                url : 'pages/page-2.html'
-            },
-            {
-                icon : 'fa-group',
-                shortDesc : 'desc3',
-                url : 'pages/page-3.html'
-            },
-            {
-                icon : 'fa-flash',
-                shortDesc : 'desc4',
-                url : 'pages/page-4.html'
-            },
-            {
-                icon : 'fa-leaf',
-                shortDesc : 'desc5',
-                url : 'pages/page-5.html'
-            }
-        ];
-
-        element = angular.element('<ng-step data-items="demoData"></ng-step>');
+        scope.sampleData = sampleData = $injector.get('mockDataSampleData');
+        element = angular.element('<ng-step data-items="sampleData"></ng-step>');
         $compile(element)(scope);
         scope.$digest();
 

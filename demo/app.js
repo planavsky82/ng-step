@@ -8,11 +8,17 @@
 
   .controller('demoCtrl', demoCtrl);
 
-  demoCtrl.$inject = [];
+  demoCtrl.$inject = ['$http'];
 
-  function demoCtrl() {
+  function demoCtrl($http) {
 
     var vm = this;
+
+    $http.get('/sample').then(function(response) {
+      console.log(response);
+    }, function(error) {
+      console.log(error);
+    });
 
     vm.demoObj = [
       {

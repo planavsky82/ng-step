@@ -12,6 +12,7 @@ module.exports = function(config) {
             'bower_components/jquery/dist/jquery.min.js',
             'bower_components/angular/angular.js',
             'bower_components/angular-mocks/angular-mocks.js',
+            'demo/app.js',
             'ng-step/js/*.js',
             'ng-step/js/*.test.js',
             'ng-step/views/*.html',
