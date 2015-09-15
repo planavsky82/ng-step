@@ -24,6 +24,7 @@
     "karma-html2js-preprocessor": "0.1.0",
     "karma-jasmine": "~0.1.5",
     "karma-ng-html2js-preprocessor": "0.1.0",
+    "karma-ng-json2js-preprocessor": "0.0.6",
     "karma-phantomjs-launcher": "~0.1.2",
     "karma": "~0.10.9",
     "karma-story-reporter": "~0.2.2",

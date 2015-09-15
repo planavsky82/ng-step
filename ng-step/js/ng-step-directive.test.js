@@ -2,71 +2,56 @@
 
 describe('ng-step', function () {
 
-    var element, scope, controller, demoData;
-
-    // use mock api data here
-    demoData = [
-        {
-            icon : 'fa-html5',
-            shortDesc : 'desc1',
-            url : 'pages/page-1.html'
-        },
-        {
-            icon : 'fa-moon-o',
-            shortDesc : 'desc2',
-            url : 'pages/page-2.html'
-        },
-        {
-            icon : 'fa-group',
-            shortDesc : 'desc3',
-            url : 'pages/page-3.html'
-        },
-        {
-            icon : 'fa-flash',
-            shortDesc : 'desc4',
-            url : 'pages/page-4.html'
-        },
-        {
-            icon : 'fa-leaf',
-            shortDesc : 'desc5',
-            url : 'pages/page-5.html'
-        }
-    ];
+    var element, scope, controller;
 
     beforeEach(module('planavsky.directive.ngStep'));
-    beforeEach(module('templates'));
+    beforeEach(module('ng-step/views/index.html'));
+    beforeEach(module('mock-data/sample-data.json'));
 
-    beforeEach(inject(function($rootScope, $compile) {
+    beforeEach(inject(function($rootScope, $compile, $httpBackend) {
 
-        //scope = $rootScope.$new();
-        //element = angular.element('<ng-step data-items="demoData"></ng-step>');
-        //$compile(element)(scope);
-        //scope.$digest();
+        scope = $rootScope.$new();
 
-        //scope = $rootScope.$new();
-        //$compile(el)(scope);
-        //scope.$digest();
-        //expect(el.isolateScope().vm.lastActiveId.toBeDefined());
-        //console.log(el);
+        // use mock api data here
+        scope.demoData = [
+            {
+                icon : 'fa-html5',
+                shortDesc : 'desc1',
+                url : 'pages/page-1.html'
+            },
+            {
+                icon : 'fa-moon-o',
+                shortDesc : 'desc2',
+                url : 'pages/page-2.html'
+            },
+            {
+                icon : 'fa-group',
+                shortDesc : 'desc3',
+                url : 'pages/page-3.html'
+            },
+            {
+                icon : 'fa-flash',
+                shortDesc : 'desc4',
+                url : 'pages/page-4.html'
+            },
+            {
+                icon : 'fa-leaf',
+                shortDesc : 'desc5',
+                url : 'pages/page-5.html'
+            }
+        ];
 
-        //$compile(el)($rootScope.$new());
-        //console.log($compile(el).controller());
-        //console.log(el.controller('ngStep'));
+        element = angular.element('<ng-step data-items="demoData"></ng-step>');
+        $compile(element)(scope);
+        scope.$digest();
 
-        //controller = el.controller('ngStep');
+        controller = element.controller('ngStep');
 
     }));
 
-    it('test example 1', function ($rootScope, $compile) {
+    it('test example 1', function () {
 
-        //var element = angular.element('<ng-step data-items="demoData"></ng-step>');
-        //console.log($compile(el)(scope));
-
-
-
-        //$compile(element)(scope);
-
-        //console.log(controller);
+        expect(element.isolateScope().vm.activeId).toBe(0);
 
         // Arrange
         var num1 = 1;
@@ -78,6 +63,7 @@ describe('ng-step', function () {
 
         // Assert
         expect(result).toBe(expected);
+
     });
 
 });

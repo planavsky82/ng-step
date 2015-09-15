@@ -10,7 +10,7 @@ ngStep.$inject = ['$http', '$compile', '$timeout', '$location', '$anchorScroll',
 function ngStep($http, $compile, $timeout, $location, $anchorScroll, $q) {
 
   var directive = {
-    templateUrl: '/ng-step/views/index.html',
+    templateUrl: 'ng-step/views/index.html',
     restrict: 'E',
     scope: {
       items: '='

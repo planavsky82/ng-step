@@ -9,20 +9,18 @@ module.exports = function(config) {
 
         // list of files / patterns to load in the browser
         files: [
+            'bower_components/jquery/dist/jquery.min.js',
             'bower_components/angular/angular.js',
             'bower_components/angular-mocks/angular-mocks.js',
             'ng-step/js/*.js',
             'ng-step/js/*.test.js',
-            '**/*.html'
+            'ng-step/views/*.html',
+            'mock-data/*.json'
         ],
 
         // list of files to exclude
         exclude: [
         ],
-
-        ngHtml2JsPreprocessor: {
-            moduleName: 'templates'
-        },
 
         // test results reporter to use
         reporters: ['progress', 'html', 'coverage'],
@@ -50,7 +48,8 @@ module.exports = function(config) {
         singleRun: true,
 
         preprocessors: {
-            '**/*.html': ['ng-html2js'],
+            'ng-step/views/*.html': ['ng-html2js'],
+            'mock-data/*.json': ['json2js'],
             '**/*.js': ['coverage']
         },
 
