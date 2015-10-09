@@ -54,6 +54,13 @@ module.exports = function(config) {
             '**/*.js': ['coverage']
         },
 
+        ngHtml2JsPreprocessor: {
+            // prepend this to the path
+            //stripPrefix: '/'
+
+            // stripPrefix also exists
+        },
+
         htmlReporter: {
             outputFile: 'build/tests/test_report.html'
         },

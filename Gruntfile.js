@@ -20,6 +20,7 @@ module.exports = function(grunt) {
                 files: [
                     {
                         src: [
+                            'index.html',
                             'ng-step/**',
                             'demo/**',
                             'bower_components/**',
@@ -39,7 +40,7 @@ module.exports = function(grunt) {
         },
         open : {
             dev : {
-                path: 'http://127.0.0.1:8080/demo'
+                path: 'http://127.0.0.1:8080/'
                 //app: 'Google Chrome'
             },
             report : {
@@ -70,7 +71,7 @@ module.exports = function(grunt) {
 
             },
             target: {
-                src: ['build/demo/index.html']
+                src: ['build/index.html']
             }
         },
         jshint: {
